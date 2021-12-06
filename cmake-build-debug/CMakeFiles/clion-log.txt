@@ -1,0 +1,4 @@
+/home/tbb/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/tbb/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/ninja/linux/ninja -G Ninja /home/tbb/Devdir/TShell
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/tbb/Devdir/TShell/cmake-build-debug
