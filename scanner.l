@@ -10,8 +10,8 @@ ID      [a-zA-Z0-9._-]+
 %%
 <<EOF>>     {return 0;}
 "&"|";"|"|" {return yytext[0];}
-">"         {return yytext[0];}
 ">>"        {return yytext[0];}
+">"         {return yytext[0];}
 "<"         {return yytext[0];}
 "\n"        {return yytext[0];}
 [ ]*        {}

@@ -28,10 +28,15 @@ do{            \
 
 extern struct passwd *pwd;
 extern cmd_t root;
+extern char history_buff[50][128];
+extern int history_cnt;
+extern int history_queue_start;
 
 void type_prompt(void);
 int cd_cmd(node _argc);
-int history_cmd(node _argc);
+void history_cmd(node arg);
+void save_history(cmd_t _root);
+void write2history(cmd_t cmd, int cur_line);
 void exec_cmd(cmd_t _cmd);
 void cmd_run(cmd_t _cmd);
 

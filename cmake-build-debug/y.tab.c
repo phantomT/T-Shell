@@ -115,9 +115,9 @@ enum yysymbol_kind_t
   YYSYMBOL_T_ARG = 3,                      /* T_ARG  */
   YYSYMBOL_4_ = 4,                         /* '|'  */
   YYSYMBOL_5_ = 5,                         /* ';'  */
-  YYSYMBOL_6_ = 6,                         /* '>'  */
-  YYSYMBOL_7_ = 7,                         /* '<'  */
-  YYSYMBOL_8_ = 8,                         /* '&'  */
+  YYSYMBOL_6_ = 6,                         /* '<'  */
+  YYSYMBOL_7_ = 7,                         /* '&'  */
+  YYSYMBOL_8_ = 8,                         /* '>'  */
   YYSYMBOL_9_ = 9,                         /* ">>"  */
   YYSYMBOL_10_n_ = 10,                     /* '\n'  */
   YYSYMBOL_YYACCEPT = 11,                  /* $accept  */
@@ -446,7 +446,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  8
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   23
+#define YYLAST   25
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  11
@@ -475,10 +475,10 @@ static const yytype_int8 yytranslate[] =
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
       10,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     8,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     7,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     5,
-       7,     2,     6,     2,     2,     2,     2,     2,     2,     2,
+       6,     2,     8,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -504,8 +504,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    35,    35,    36,    39,    40,    41,    42,    43,    44,
-      45,    48,    51,    52
+       0,    36,    36,    37,    40,    41,    42,    43,    44,    45,
+      46,    49,    52,    53
 };
 #endif
 
@@ -522,7 +522,7 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
 static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "T_ARG", "'|'", "';'",
-  "'>'", "'<'", "'&'", "\">>\"", "'\\n'", "$accept", "line", "command",
+  "'<'", "'&'", "'>'", "\">>\"", "'\\n'", "$accept", "line", "command",
   "basic_command", "args", YY_NULLPTR
 };
 
@@ -538,7 +538,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_int16 yytoknum[] =
 {
-       0,   256,   257,   258,   124,    59,    62,    60,    38,   259,
+       0,   256,   257,   258,   124,    59,    60,    38,    62,   259,
       10
 };
 #endif
@@ -557,9 +557,9 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,     2,    -9,    21,     4,    -9,     2,    -9,    -9,    19,
-      19,    19,    19,    -9,    19,    -9,    -9,     9,     9,    11,
-      11,    -9
+      -3,     1,    -9,    22,     4,    -9,     1,    -9,    -9,    20,
+      20,    20,    -9,    20,    20,    -9,    -9,     9,     9,    12,
+      15,    -9
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -568,14 +568,14 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,    13,     3,     0,     0,     4,    13,    11,     1,     0,
-       0,     0,     0,     6,     0,     2,    12,     7,     5,    10,
-       8,     9
+       0,     0,     6,     0,     0,     2,    12,     7,     5,     8,
+       9,    10
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -9,    -9,    -8,    -9,    17
+      -9,    -9,    -8,    -9,    19
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -589,16 +589,16 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,    17,    18,    19,    20,     6,    21,     2,     9,    10,
-      11,    12,    13,    14,    15,    11,    12,    13,    14,    13,
-      14,     8,     1,    16
+       1,    17,    18,    19,     6,    20,    21,     2,     9,    10,
+      11,    12,    13,    14,    15,    11,    12,    13,    14,    12,
+      13,    14,     8,     1,    14,    16
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     9,    10,    11,    12,     3,    14,    10,     4,     5,
-       6,     7,     8,     9,    10,     6,     7,     8,     9,     8,
-       9,     0,     3,     6
+       3,     9,    10,    11,     3,    13,    14,    10,     4,     5,
+       6,     7,     8,     9,    10,     6,     7,     8,     9,     7,
+       8,     9,     0,     3,     9,     6
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -1089,73 +1089,73 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* line: command '\n'  */
-#line 35 "/home/tbb/Devdir/TShell/parser.y"
+#line 36 "/home/tbb/Devdir/TShell/parser.y"
                                                 { root = (yyvsp[-1].cmd); (yyval.num) = 0; return 0; }
 #line 1095 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 3: /* line: '\n'  */
-#line 36 "/home/tbb/Devdir/TShell/parser.y"
+#line 37 "/home/tbb/Devdir/TShell/parser.y"
                                                         { root = 0; (yyval.num) = 0; return 0; }
 #line 1101 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 4: /* command: basic_command  */
-#line 39 "/home/tbb/Devdir/TShell/parser.y"
+#line 40 "/home/tbb/Devdir/TShell/parser.y"
                                                     { (yyval.cmd) = (yyvsp[0].cmd);}
 #line 1107 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 5: /* command: command ';' command  */
-#line 40 "/home/tbb/Devdir/TShell/parser.y"
+#line 41 "/home/tbb/Devdir/TShell/parser.y"
                                                         { (yyval.cmd) = cmd_list_new((yyvsp[-2].cmd), (yyvsp[0].cmd));}
 #line 1113 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 6: /* command: command '&'  */
-#line 41 "/home/tbb/Devdir/TShell/parser.y"
+#line 42 "/home/tbb/Devdir/TShell/parser.y"
                                                             { (yyval.cmd) = cmd_back_new((yyvsp[-1].cmd));}
 #line 1119 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 7: /* command: command '|' command  */
-#line 42 "/home/tbb/Devdir/TShell/parser.y"
+#line 43 "/home/tbb/Devdir/TShell/parser.y"
                                                         { (yyval.cmd) = cmd_pipe_new((yyvsp[-2].cmd), (yyvsp[0].cmd));}
 #line 1125 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 8: /* command: command '<' command  */
-#line 43 "/home/tbb/Devdir/TShell/parser.y"
+#line 44 "/home/tbb/Devdir/TShell/parser.y"
                                                     { (yyval.cmd) = cmd_redi_new((yyvsp[-2].cmd), (yyvsp[0].cmd), 0);}
 #line 1131 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
-  case 9: /* command: command ">>" command  */
-#line 44 "/home/tbb/Devdir/TShell/parser.y"
-                                                    { (yyval.cmd) = cmd_redor_new((yyvsp[-2].cmd), (yyvsp[0].cmd), 1);}
+  case 9: /* command: command '>' command  */
+#line 45 "/home/tbb/Devdir/TShell/parser.y"
+                                                        { (yyval.cmd) = cmd_redo_new((yyvsp[-2].cmd), (yyvsp[0].cmd), 1);}
 #line 1137 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
-  case 10: /* command: command '>' command  */
-#line 45 "/home/tbb/Devdir/TShell/parser.y"
-                                                        { (yyval.cmd) = cmd_redo_new((yyvsp[-2].cmd), (yyvsp[0].cmd), 1);}
+  case 10: /* command: command ">>" command  */
+#line 46 "/home/tbb/Devdir/TShell/parser.y"
+                                                    { (yyval.cmd) = cmd_redor_new((yyvsp[-2].cmd), (yyvsp[0].cmd), 1);}
 #line 1143 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 11: /* basic_command: T_ARG args  */
-#line 48 "/home/tbb/Devdir/TShell/parser.y"
+#line 49 "/home/tbb/Devdir/TShell/parser.y"
                                                     { struct Node *t = make_node((yyvsp[-1].id), (yyvsp[0].node)); (yyval.cmd) = cmd_atom_new(t);}
 #line 1149 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 12: /* args: T_ARG args  */
-#line 51 "/home/tbb/Devdir/TShell/parser.y"
+#line 52 "/home/tbb/Devdir/TShell/parser.y"
                                                             { (yyval.node) = make_node((yyvsp[-1].id), (yyvsp[0].node));}
 #line 1155 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
 
   case 13: /* args: %empty  */
-#line 52 "/home/tbb/Devdir/TShell/parser.y"
+#line 53 "/home/tbb/Devdir/TShell/parser.y"
                                                     { (yyval.node) = (struct Node *)0;}
 #line 1161 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.c"
     break;
@@ -1355,7 +1355,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 55 "/home/tbb/Devdir/TShell/parser.y"
+#line 56 "/home/tbb/Devdir/TShell/parser.y"
 
 
 void yyerror(const char* msg) {

@@ -20,7 +20,7 @@ void exec_cmd(cmd_t _root){
         else if(!strcmp(_node->data, "can_you_hear_me?"))
             printf("Hell yeah!\n");
         else if(!strcmp(_node->data, "who_am_i"))
-            printf("How could I know");
+            printf("How could I know\n");
         else{
             switch(pid = fork()){
                 case -1: {
@@ -288,7 +288,7 @@ void cmd_run(cmd_t cmd){
             cmd_t right = t->right;
             switch (pid = fork()) {
                 case -1:{
-                    printf("Redo fork() Error.\n");
+                    printf("Redor fork() Error.\n");
                     perror("fork()");
                     exit(1);
                 }
@@ -313,6 +313,7 @@ void cmd_run(cmd_t cmd){
                     if(fd < 0)
                         exit(1);
                     dup2(fd, STDOUT_FILENO);
+                    printf("Redor running\n");
                     cmd_run(left);
                     if(fd != STDOUT_FILENO)
                         close(fd);
