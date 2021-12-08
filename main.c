@@ -14,7 +14,7 @@ int main() {
         yyparse();
         if(root == NULL) continue;
         //cmd_print(root);
-        save_history(root);
+        //save_history(root);
         exec_cmd(root);
     }
     return 0;

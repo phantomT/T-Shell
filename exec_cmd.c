@@ -11,17 +11,22 @@ void exec_cmd(cmd_t _root){
         if(!strcmp(_node->data, "exit") ||
             !strcmp(_node->data, "quit"))
             exit(0);
-        else if(!strcmp(_node->data, "cd"))
+        else if(!strcmp(_node->data, "cd")) {
+            save_history(root);
             cd_cmd(_node->next);
-        else if(!strcmp(_node->data, "about"))
+        }else if(!strcmp(_node->data, "about")) {
             printf("This is a simplified version of shell on Linux.\n");
-        else if(!strcmp(_node->data, "history"))
+            save_history(root);
+        }else if(!strcmp(_node->data, "history")) {
             history_cmd(_node->next);
-        else if(!strcmp(_node->data, "can_you_hear_me?"))
+            save_history(root);
+        }else if(!strcmp(_node->data, "can_you_hear_me?")) {
             printf("Hell yeah!\n");
-        else if(!strcmp(_node->data, "who_am_i"))
+            save_history(root);
+        }else if(!strcmp(_node->data, "who_am_i")){
             printf("How could I know\n");
-        else{
+            save_history(root);
+        }else{
             switch(pid = fork()){
                 case -1: {
                     printf("fork failed.\n");
@@ -35,6 +40,7 @@ void exec_cmd(cmd_t _root){
                 default:{
                     int status;
                     waitpid(pid, &status, 0);
+                    save_history(root);
                     int err = WEXITSTATUS(status);
                     if(err)
                         printf("Error: %s\n", strerror(err));
@@ -55,6 +61,7 @@ void exec_cmd(cmd_t _root){
             default:{
                 int status;
                 waitpid(pid, &status, 0);
+                save_history(root);
                 int err = WEXITSTATUS(status);
                 if(err)
                     printf("Error: %s\n", strerror(err));
@@ -84,7 +91,7 @@ void cmd_run(cmd_t cmd){
             }else if(!strcmp(_node->data, "history")){
                 history_cmd(_node->next);
                 break;
-            }else if(!strcmp(_node->data, "can_you_hear_me?")){
+            }else if(!strcmp(_node->data, "can_you_hear_me")){
                 printf("Hell yeah!\n");
                 break;
             }else if(!strcmp(_node->data, "who_am_i")){
@@ -98,7 +105,7 @@ void cmd_run(cmd_t cmd){
                 }
                 //use cmd already in $PATH, so use execvp() instead of execv()
                 if(execvp(arg[0], arg) == -1)
-                    fprintf(stderr, "Cannot run command, check your input.\n");
+                    fprintf(stderr, "Cannot run command, check your input.");
                 break;
             }
         }
@@ -191,6 +198,8 @@ void cmd_run(cmd_t cmd){
             cmd_redi t = (cmd_redi)cmd;
             cmd_t left = t->left;
             cmd_t right = t->right;
+            //if(right->type == CMD_ATOM) printf("redi: it's a atom\n");
+            //else if(right->type == CMD_REDO) printf("redi: it's a redo\n");
             switch (pid = fork()) {
                 case -1:{
                     printf("Redi fork() Error.\n");
@@ -201,18 +210,10 @@ void cmd_run(cmd_t cmd){
                     int fd;
                     cmd_atom inFile;
                     char *File;
-                    if(right->type == CMD_ATOM){
-                        inFile = (cmd_atom)right;
-                        File = inFile->node->data;
-                    }else if(right->type == CMD_REDO){
-                        cmd_redo tmp = (cmd_redo)right;
-                        inFile = (cmd_atom)tmp->left;
-                        File = inFile->node->data;
-                    }else if(right->type == CMD_REDOR){
-                        cmd_redor tmp = (cmd_redor)right;
-                        inFile = (cmd_atom)tmp->left;
-                        File = inFile->node->data;
-                    }
+
+                    inFile = (cmd_atom)right;
+                    File = inFile->node->data;
+
                     fd = open(File, O_RDONLY, 0777);
                     if(fd < 0)
                         exit(1);
@@ -238,6 +239,8 @@ void cmd_run(cmd_t cmd){
             cmd_redo t = (cmd_redo)cmd;
             cmd_t left = t->left;
             cmd_t right = t->right;
+            //if(left->type == CMD_REDI) printf("redo: it's a redi\n");
+            //else if(left->type == CMD_ATOM) printf("redo: it's a atom\n");
             switch (pid = fork()) {
                 case -1:{
                     printf("Redo fork() Error\n.");
@@ -249,18 +252,9 @@ void cmd_run(cmd_t cmd){
                     cmd_atom outFile;
                     char *File;
 
-                    if(right->type == CMD_ATOM){
-                        outFile = (cmd_atom)right;
-                        File = outFile->node->data;
-                    }else if(right->type == CMD_REDO){
-                        cmd_redo tmp = (cmd_redo)right;
-                        outFile = (cmd_atom)tmp->left;
-                        File = outFile->node->data;
-                    }else if(right->type == CMD_REDOR){
-                        cmd_redo tmp = (cmd_redo)right;
-                        outFile = (cmd_atom)tmp->left;
-                        File = outFile->node->data;
-                    }
+                    outFile = (cmd_atom)right;
+                    File = outFile->node->data;
+
                     fd = open(File, O_WRONLY|O_CREAT|O_TRUNC, 0777);
                     if(fd < 0)
                         exit(1);

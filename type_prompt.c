@@ -13,9 +13,9 @@ void type_prompt(void){
     pwd = getpwuid(getuid());
     getcwd(pathName, max_path_len);
     if(gethostname(hostName, max_name_len) == 0)
-        sprintf(prompt,"T_bb%s@%s:",pwd->pw_name,hostName);
+        sprintf(prompt,"T_bb_%s@%s:",pwd->pw_name,hostName);
     else
-        sprintf(prompt,"T_bb%s@unknown:",pwd->pw_name);
+        sprintf(prompt,"T_bb_%s@unknown:",pwd->pw_name);
 
     unsigned prompt_len = strlen(prompt);
     unsigned pw_dir_len = strlen(pwd->pw_dir);

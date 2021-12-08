@@ -37,8 +37,9 @@ void history_cmd(node arg){
     int n = atoi(arg->data);
     if(arg->data == NULL) n = history_cnt;
     if(n >= history_cnt) n = history_cnt;
-    for(int i = 0; i < n; ++i)
-        printf("%d\t%s\n", i+1, history_buff[(history_queue_start+i)%50]);
+    //(start+n)%50-i
+    for(int i = n-1; i >= 0; --i)
+        printf("%d\t%s\n", n-i, history_buff[(history_queue_start+history_cnt-i-1)%50]);
 }
 
 void save_history(cmd_t _root){

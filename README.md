@@ -5,6 +5,8 @@ This is a simplified version of shell on Linux.
 
 其中使用`flex`和`bison`以及语法树构建的代码改自《工程化C》[课程源码模板](https://csslab-ustc.github.io/courses/sysprog/lab1/index.html)
 
+[博客讲解: 简易shell的实现 | 无信号接收版](https://phantomt.github.io/2021/12/07/Shell-001-start/)
+
 ## TODO
 - [ ] `SIG`系统信号捕获与处理
 - [ ] `>>`追加写入功能【现在还没搞懂怎么加入词法分析树】

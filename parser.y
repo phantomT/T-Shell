@@ -26,10 +26,10 @@ extern cmd_t root;
 %type<node> args
 
 %left '|' ';'
-%left '<'
 %left '&'
-%left '>'
-%left ">>"
+%right '>'
+%right ">>"
+%right '<'
 
 %%
 
