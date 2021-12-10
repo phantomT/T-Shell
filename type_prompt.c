@@ -2,12 +2,11 @@
 // Created by tbb on 2021/12/5.
 //
 #include "main.h"
-const unsigned max_name_len = 256;
-const unsigned max_path_len = 1024;
+
+char hostName[max_name_len];
+char pathName[max_path_len];
 
 void type_prompt(void){
-    char hostName[max_name_len];
-    char pathName[max_path_len];
     char prompt[MAX_PROMPT];
 
     pwd = getpwuid(getuid());

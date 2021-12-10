@@ -9,6 +9,7 @@ int history_queue_start = 0;
 extern int yyparse();
 
 int main() {
+    printf("Hi, Welcome to the Machine!\n");
     while(1){
         type_prompt();
         yyparse();

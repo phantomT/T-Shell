@@ -104,8 +104,19 @@ void cmd_run(cmd_t cmd){
                     ++i;
                 }
                 //use cmd already in $PATH, so use execvp() instead of execv()
-                if(execvp(arg[0], arg) == -1)
-                    fprintf(stderr, "Cannot run command, check your input.");
+                if(execvp(arg[0], arg) == -1) {
+                    char *curPath = malloc(strlen(pathName)+strlen(arg[0])+2);
+                    if(curPath == NULL){
+                        printf("execv in curPath malloc failed.\n");
+                        exit(1);
+                    }
+                    strncpy(curPath, pathName, strlen(pathName)+1);
+                    strncpy(curPath+ strlen(pathName), "/", 2);
+                    strncpy(curPath+ strlen(pathName)+1, arg[0], strlen(arg[0])+1);
+                    printf("%s\n", curPath);
+                    if(execv(curPath, arg) == -1)
+                        fprintf(stderr, "Cannot run command, check your input.");
+                }
                 break;
             }
         }

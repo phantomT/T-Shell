@@ -21,6 +21,8 @@
 #include "read_cmd.h"
 
 #define MAX_PROMPT 1024
+#define max_name_len 256
+#define max_path_len 1024
 #define NEW(p) \
 do{            \
     p = malloc(sizeof(*p)); \
@@ -31,6 +33,8 @@ extern cmd_t root;
 extern char history_buff[50][128];
 extern int history_cnt;
 extern int history_queue_start;
+extern char hostName[max_name_len];
+extern char pathName[max_path_len];
 
 void type_prompt(void);
 int cd_cmd(node _argc);
