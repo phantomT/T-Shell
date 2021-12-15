@@ -6,18 +6,17 @@
 STRING  [a-zA-Z]
 DIGIT   [0-9]
 ID      [a-zA-Z0-9._-]+
+REDO    [>]{1,2}
 
 %%
 <<EOF>>     {return 0;}
-"&"|";"|"|" {return yytext[0];}
-">>"        {return yytext[0];}
-">"         {return yytext[0];}
+'&'|';'|'|' {return yytext[0];}
+{REDO}      {yylval = strdup(yytext); return REDOR;}
 "<"         {return yytext[0];}
 "\n"        {return yytext[0];}
 [ ]*        {}
 {ID}+       {yylval = strdup(yytext); return T_ARG;}
 .           {printf("lex err:[%s]", yytext); return 0;}
-
 %%
 
 int yywrap() {

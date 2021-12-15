@@ -75,6 +75,13 @@ cmd_t cmd_redor_new(cmd_t left, cmd_t right, int fd){
     return (cmd_t)cmd;
 }
 
+cmd_t cmd_redo_check(cmd_t left, cmd_t right, int fd, char* op){
+    if(strcmp(op, ">>") == 0)
+        return cmd_redor_new(left, right, fd);
+    else
+        return cmd_redo_new(left, right, fd);
+}
+
 void cmd_print(cmd_t _cmd){
     switch (_cmd->type) {
         case CMD_ATOM:{

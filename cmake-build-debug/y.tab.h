@@ -54,7 +54,8 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    T_ARG = 258                    /* T_ARG  */
+    T_ARG = 258,                   /* T_ARG  */
+    REDOR = 259                    /* REDOR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -67,10 +68,11 @@ union YYSTYPE
 
     int num;
     char *id;
+    char *op;
     cmd_t cmd;
     node node;
 
-#line 74 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.h"
+#line 76 "/home/tbb/Devdir/TShell/cmake-build-debug/y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

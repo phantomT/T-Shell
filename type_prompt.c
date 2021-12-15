@@ -12,17 +12,17 @@ void type_prompt(void){
     pwd = getpwuid(getuid());
     getcwd(pathName, max_path_len);
     if(gethostname(hostName, max_name_len) == 0)
-        sprintf(prompt,"T_bb_%s@%s:",pwd->pw_name,hostName);
+        sprintf(prompt,"\033[1;33mT_bb_%s@%s:\033[1;33m",pwd->pw_name,hostName);
     else
-        sprintf(prompt,"T_bb_%s@unknown:",pwd->pw_name);
+        sprintf(prompt,"\033[1;33mT_bb_%s@unknown:\033[1;33m",pwd->pw_name);
 
     unsigned prompt_len = strlen(prompt);
     unsigned pw_dir_len = strlen(pwd->pw_dir);
     if(strlen(pathName) < pw_dir_len ||
        strncmp(pathName, pwd->pw_dir, pw_dir_len) != 0)
-        sprintf(prompt + prompt_len, "%s", pathName);
+        sprintf(prompt + prompt_len, "\033[0;35m%s\033[0m", pathName);
     else
-        sprintf(prompt + prompt_len, "~%s", pathName + pw_dir_len);
+        sprintf(prompt + prompt_len, "\033[0;35m~%s\033[0m", pathName + pw_dir_len);
 
     prompt_len = strlen(prompt);
     if(geteuid() == 0)

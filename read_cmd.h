@@ -84,6 +84,8 @@ typedef struct Cmd_redor{
 }Cmd_redor, *cmd_redor;
 cmd_t cmd_redor_new(cmd_t left, cmd_t right, int fd);
 
+cmd_t cmd_redo_check(cmd_t left, cmd_t right, int fd, char* op);
+
 //print AST
 void cmd_print(cmd_t _cmd);
 

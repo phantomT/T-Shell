@@ -20,7 +20,7 @@
 #include <dirent.h>
 #include "read_cmd.h"
 
-#define MAX_PROMPT 1024
+#define MAX_PROMPT 2048
 #define max_name_len 256
 #define max_path_len 1024
 #define NEW(p) \

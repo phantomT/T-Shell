@@ -15,20 +15,21 @@ extern cmd_t root;
 %union{
     int num;
     char *id;
+    char *op;
     cmd_t cmd;
     node node;
 }
 
-%token<id> T_ARG
+%token<id>      T_ARG
+%token<op>      REDOR
 
-%type<cmd> command basic_command
-%type<num> line
-%type<node> args
+%type<cmd>      command basic_command
+%type<num>      line
+%type<node>     args
 
 %left '|' ';'
 %left '&'
-%right '>'
-%right ">>"
+%right REDOR
 %right '<'
 
 %%
@@ -42,8 +43,7 @@ command	        :  basic_command		    { $$ = $1;}
 		        |  command '&'			    { $$ = cmd_back_new($1);}
 		        |  command '|' command 		{ $$ = cmd_pipe_new($1, $3);}
 		        |  command '<' command      { $$ = cmd_redi_new($1, $3, 0);}
-		        |  command '>' command		{ $$ = cmd_redo_new($1, $3, 1);}
-		        |  command ">>" command     { $$ = cmd_redor_new($1, $3, 1);}
+		        |  command REDOR command    { $$ = cmd_redo_check($1, $3, 1, $2);}
 		        ;
 
 basic_command   :  T_ARG args			    { struct Node *t = make_node($1, $2); $$ = cmd_atom_new(t);}
