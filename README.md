@@ -9,14 +9,17 @@ This is a simplified version of shell on Linux.
 
 ## TODO
 - [ ] `SIG`系统信号捕获与处理
-- [ ] `>>`追加写入功能【现在还没搞懂怎么加入词法分析树】
+- [ ] `cd` Path can't include '/' (flex problem)
+
 ## 已经实现功能
 - 内建命令：`cd/about/history/exit/quit`等，`history`命令必须带参数执行
 - Program指令：`ls/pwd/cat/grep`等在`PATH`中的程序
 - 用`;`分段的多命令执行
-- `< >`输入输出重定向
+- `<, >, >>`输入输出重定向
 - `|`管道
 - `&`后台运行
+- colorful prompt :)
+
 ## 主要文件
 - `main.c`主函数
 - `main.h`主函数的头文件，包含大部分函数声明
