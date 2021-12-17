@@ -5,7 +5,7 @@
 
 STRING  [a-zA-Z]
 DIGIT   [0-9]
-ID      [a-zA-Z0-9._-]+
+ID      [~/a-zA-Z0-9._-]+
 REDO    [>]{1,2}
 
 %%

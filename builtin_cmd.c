@@ -18,7 +18,7 @@ int cd_cmd(node arg){
             exit(1);
         }
         strncpy(cd_path, pwd->pw_dir, strlen(pwd->pw_dir)+1);
-        strncpy(cd_path+strlen(pwd->pw_dir), arg->data, strlen(arg->data)+1);
+        strncpy(cd_path+strlen(pwd->pw_dir), arg->data+1, strlen(arg->data)+1);
     }else{
         cd_path = malloc(path_len);
         if(cd_path == NULL){
