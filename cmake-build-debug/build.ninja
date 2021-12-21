@@ -121,6 +121,13 @@ build CMakeFiles/TShell.dir/builtin_cmd.c.o: C_COMPILER__TShell_Debug /home/tbb/
   OBJECT_DIR = CMakeFiles/TShell.dir
   OBJECT_FILE_DIR = CMakeFiles/TShell.dir
 
+build CMakeFiles/TShell.dir/sig_handle.c.o: C_COMPILER__TShell_Debug /home/tbb/Devdir/TShell/sig_handle.c || cmake_object_order_depends_target_TShell
+  DEP_FILE = CMakeFiles/TShell.dir/sig_handle.c.o.d
+  FLAGS = -g -std=gnu11
+  INCLUDES = -I/home/tbb/Devdir/TShell/cmake-build-debug -I/home/tbb/Devdir/TShell
+  OBJECT_DIR = CMakeFiles/TShell.dir
+  OBJECT_FILE_DIR = CMakeFiles/TShell.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TShell
@@ -129,7 +136,7 @@ build CMakeFiles/TShell.dir/builtin_cmd.c.o: C_COMPILER__TShell_Debug /home/tbb/
 #############################################
 # Link the executable TShell
 
-build TShell: C_EXECUTABLE_LINKER__TShell_Debug CMakeFiles/TShell.dir/main.c.o CMakeFiles/TShell.dir/y.tab.c.o CMakeFiles/TShell.dir/lex.yy.c.o CMakeFiles/TShell.dir/type_prompt.c.o CMakeFiles/TShell.dir/read_cmd.c.o CMakeFiles/TShell.dir/exec_cmd.c.o CMakeFiles/TShell.dir/builtin_cmd.c.o
+build TShell: C_EXECUTABLE_LINKER__TShell_Debug CMakeFiles/TShell.dir/main.c.o CMakeFiles/TShell.dir/y.tab.c.o CMakeFiles/TShell.dir/lex.yy.c.o CMakeFiles/TShell.dir/type_prompt.c.o CMakeFiles/TShell.dir/read_cmd.c.o CMakeFiles/TShell.dir/exec_cmd.c.o CMakeFiles/TShell.dir/builtin_cmd.c.o CMakeFiles/TShell.dir/sig_handle.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/TShell.dir
   POST_BUILD = :

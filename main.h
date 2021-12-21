@@ -20,9 +20,11 @@
 #include <dirent.h>
 #include "read_cmd.h"
 
+/* Misc manifest constants */
 #define MAX_PROMPT 2048
 #define max_name_len 256
 #define max_path_len 1024
+
 #define NEW(p) \
 do{            \
     p = malloc(sizeof(*p)); \
@@ -35,6 +37,7 @@ extern int history_cnt;
 extern int history_queue_start;
 extern char hostName[max_name_len];
 extern char pathName[max_path_len];
+extern sigset_t sigset;
 
 void type_prompt(void);
 int cd_cmd(node _argc);
@@ -43,5 +46,8 @@ void save_history(cmd_t _root);
 void write2history(cmd_t cmd, int cur_line);
 void exec_cmd(cmd_t _cmd);
 void cmd_run(cmd_t _cmd);
+
+void sigint_handler(int sig);
+void sigtstp_handler(int sig);
 
 #endif //TSHELL_MAIN_H

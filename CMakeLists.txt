@@ -19,4 +19,4 @@ ADD_FLEX_BISON_DEPENDENCY(scanner parser)
 add_executable(TShell main.c
         ${BISON_parser_OUTPUTS}
         ${FLEX_scanner_OUTPUTS}
-        read_cmd.h main.h type_prompt.c read_cmd.c exec_cmd.c builtin_cmd.c)
+        read_cmd.h main.h type_prompt.c read_cmd.c exec_cmd.c builtin_cmd.c sig_handle.c sig_handle.c)

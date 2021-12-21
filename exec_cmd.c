@@ -38,8 +38,12 @@ void exec_cmd(cmd_t _root){
                     exit(1);
                 }
                 default:{
+                    signal(SIGINT, SIG_IGN);
+                    signal(SIGTSTP, SIG_IGN);
                     int status;
                     waitpid(pid, &status, 0);
+                    signal(SIGINT, sigint_handler);
+                    signal(SIGTSTP, sigtstp_handler);
                     save_history(root);
                     int err = WEXITSTATUS(status);
                     if(err)
@@ -59,9 +63,13 @@ void exec_cmd(cmd_t _root){
                 exit(1);
             }
             default:{
+                signal(SIGINT, SIG_IGN);
+                signal(SIGTSTP, SIG_IGN);
                 int status;
                 waitpid(pid, &status, 0);
                 save_history(root);
+                signal(SIGINT, sigint_handler);
+                signal(SIGTSTP, sigtstp_handler);
                 int err = WEXITSTATUS(status);
                 if(err)
                     printf("Error: %s\n", strerror(err));
@@ -115,7 +123,7 @@ void cmd_run(cmd_t cmd){
                     strncpy(curPath+ strlen(pathName)+1, arg[0], strlen(arg[0])+1);
                     printf("%s\n", curPath);
                     if(execv(curPath, arg) == -1)
-                        fprintf(stderr, "Cannot run command, check your input.");
+                        fprintf(stderr, "Cannot run command, check your input.\n");
                 }
                 break;
             }
@@ -133,6 +141,8 @@ void cmd_run(cmd_t cmd){
                     freopen("/dev/null", "w", stdout);
                     freopen("/dev/null", "r", stdin);
                     signal(SIGCHLD, SIG_IGN);
+                    sigaddset(&sigset, SIGINT);
+                    sigprocmask(SIG_SETMASK, &sigset, NULL);
                     cmd_run(_back);
                 }
                 default:
@@ -318,7 +328,7 @@ void cmd_run(cmd_t cmd){
                     if(fd < 0)
                         exit(1);
                     dup2(fd, STDOUT_FILENO);
-                    printf("Redor running\n");
+                    //printf("Redor running\n");
                     cmd_run(left);
                     if(fd != STDOUT_FILENO)
                         close(fd);
